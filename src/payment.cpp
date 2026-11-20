@@ -19,7 +19,11 @@ bool processPayment(double amount)
 {
     char key[KEY_SIZE];
     bool authorized;
-
+    if (secret == NULL)
+    {
+        return false;
+    }
+    
     snprintf(key, sizeof key, "%s", secret);
     authorized = gatewayAuthorize(key, amount);
     memset(key, 0, sizeof key);
